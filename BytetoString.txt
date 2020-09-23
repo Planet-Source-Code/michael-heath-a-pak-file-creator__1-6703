@@ -1,0 +1,23 @@
+Public Function PutFileInString(sFileName As String) As String
+    'sFileName must include Path and file na
+    '     me
+    'eg "c:\Windows\notepad.exe"
+    Dim iFree As Integer, sizeOfFile As Long
+    Dim sFileString As String, sTemp As String
+    iFree = FreeFile
+    Open sFileName For Binary Access Read As iFree
+    sizeOfFile = LOF(iFree)
+    sFileString = Space$(sizeOfFile)
+    Get iFree, , sFileString
+    Close #iFree
+    PutFileInString = sFileString
+End Function
+
+
+Private Sub Command1_Click() ' how To use it
+    Dim sTemp As String
+    sTemp = PutFileInString("e:\winnt\notepad.exe")
+End Sub
+
+
+By Robert Carter
